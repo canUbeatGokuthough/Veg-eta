@@ -1,0 +1,52 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void heapifyUP(vector<int>& heap, int index) {
+    int parent = (index-1) / 2;
+    while(index > 0) {
+        if(heap[index] < heap[parent]) {
+            swap(heap[index],heap[parent]);
+            index = parent;
+        } else {
+            break;
+        }
+    }
+}
+
+void insertIntoHeap(vector<int>& heap, int value) {
+    heap.push_back(value);
+    heapifyUP(heap, heap.size()-1);
+}
+
+void displayHeap(vector<int>& heap) {
+    for (int element : heap)
+    {
+        cout << element << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> minHeap;
+
+    // int choice;
+    // while(choice!=-1){
+    //     cout << "Insert element to be inserted (-1 to exit) :";
+    //     cin >> choice;
+    //     if(choice!=-1) 
+    //         insertIntoHeap(minHeap, choice);
+    // } 
+
+    insertIntoHeap(minHeap, 8);
+    insertIntoHeap(minHeap, 7);
+    insertIntoHeap(minHeap, 5);
+    insertIntoHeap(minHeap, 3);
+    insertIntoHeap(minHeap, 1);
+
+    cout << "Heap elements : ";
+    displayHeap(minHeap);
+
+    return 0;
+}
+    

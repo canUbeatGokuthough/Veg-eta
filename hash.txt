@@ -1,0 +1,41 @@
+#include<iostream>
+#include<list>
+#include<vector>
+
+using namespace std;
+const int TABLE_SIZE = 10;
+
+int hashFunction(int key) {
+    return key % TABLE_SIZE;
+}
+
+void insert(vector<list<int>>& hashTable, int key) {
+    int index = hashFunction(key);
+    hashTable[index].push_back(key);
+}
+
+void printHashTable(vector<list<int>>& hashTable) {
+    cout << "Index ELements : " << endl;
+    for(int i=0; i<TABLE_SIZE; ++i) {
+        cout << i << " => ";
+        for(int value : hashTable[i]) {
+            cout << value << " -> ";
+        }
+        std::cout << "X" << endl;
+    }
+}
+
+int main() {
+    vector<list<int>> hashTable(TABLE_SIZE);
+
+    insert(hashTable,5);
+    insert(hashTable,4);
+    insert(hashTable,12);
+    insert(hashTable,29);
+    insert(hashTable,10);
+    insert(hashTable,7);
+
+    printHashTable(hashTable);
+
+    return 0;
+}
